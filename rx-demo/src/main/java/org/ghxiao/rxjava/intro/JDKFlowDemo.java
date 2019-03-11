@@ -1,4 +1,4 @@
-package org.ghxiao.rxjava;
+package org.ghxiao.rxjava.intro;
 
 import java.util.concurrent.Flow;
 import java.util.concurrent.SubmissionPublisher;

@@ -1,8 +1,6 @@
-package org.ghxiao.rxjava;
+package org.ghxiao.rxjava.intro;
 
 import io.reactivex.Flowable;
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
 
 import java.util.concurrent.TimeUnit;
 

@@ -1,4 +1,4 @@
-package org.ghxiao.rxjava;
+package org.ghxiao.rxjava.intro;
 
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
@@ -6,7 +6,6 @@ import io.reactivex.FlowableEmitter;
 import io.reactivex.schedulers.Schedulers;
 
 import java.time.LocalDateTime;
-import java.util.Calendar;
 
 public class RxChannelsDemo {
 
