@@ -43,3 +43,6 @@ ontop-optique-test
 tmp
 *.log
 
+node_modules/
+
+

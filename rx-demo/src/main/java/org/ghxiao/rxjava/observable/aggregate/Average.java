@@ -2,12 +2,13 @@ package org.ghxiao.rxjava.observable.aggregate;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;
+import io.reactivex.disposables.Disposable;
 
 import java.util.concurrent.TimeUnit;
 
 public class Average {
     public static void main(String[] args) throws InterruptedException {
-         Observable
+        final Disposable disposable = Observable
                 .interval(1, 1, TimeUnit.SECONDS)
                 .take(5)
                 .reduce(new Aggregator(0, 0),
@@ -15,7 +16,7 @@ public class Average {
                 .map(a -> a.sum / a.count)
                 .subscribe(System.out::println);
 
-         Thread.sleep(10000);
+        Thread.sleep(10000);
     }
 
     public static class Aggregator {
