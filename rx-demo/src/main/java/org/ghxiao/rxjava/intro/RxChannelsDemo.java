@@ -10,21 +10,21 @@ import java.time.LocalDateTime;
 public class RxChannelsDemo {
 
     public static void main(String[] args) {
-        Flowable.create(RxChannelsDemo::emit, BackpressureStrategy.DROP)
+        Flowable.create(RxChannelsDemo::emit, BackpressureStrategy.BUFFER)
                 .observeOn(Schedulers.computation(), true,2) // <-- async, non-blocking
+                //.observeOn(Schedulers.io(), true,2) // <-- blocking
                 .map(data -> data * 1)
                 .subscribe(
                         RxChannelsDemo::process,
                         err -> System.out.println("ERROR " + err),
                         () -> System.out.println("DONE"));
         sleep(10_000);
-
     }
 
     private static void emit(FlowableEmitter<Integer> emitter) {
         int count = 0;
 
-        while (count < 10) {
+        while (count < 5) {
             count++;
             System.out.println("time " + LocalDateTime.now() + " thread: " + Thread.currentThread().getName() + " Emitting..." + count);
             emitter.onNext(count);

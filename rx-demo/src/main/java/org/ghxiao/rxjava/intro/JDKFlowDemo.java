@@ -6,36 +6,11 @@ import java.util.concurrent.SubmissionPublisher;
 public class JDKFlowDemo {
 
     public static void main(String[] args) {
-        SubmissionPublisher feed = new SubmissionPublisher();
+        SubmissionPublisher<Integer> feed = new SubmissionPublisher<>();
 
-        feed.subscribe(new Flow.Subscriber() {
-            private Flow.Subscription subscription;
+        feed.subscribe(new IntegerSubscriber());
 
-            @Override
-            public void onSubscribe(Flow.Subscription subscription) {
-                this.subscription = subscription;
-                subscription.request(1);
-            }
-
-            @Override
-            public void onNext(Object item) {
-                System.out.println(item);
-                subscription.request(1);
-
-            }
-
-            @Override
-            public void onError(Throwable throwable) {
-
-            }
-
-            @Override
-            public void onComplete() {
-                System.out.println("DONE!");
-            }
-        });
-
-        for(int i = 0; i < 10; i++){
+        for (int i = 0; i < 10; i++) {
             feed.submit(i);
         }
 
@@ -48,6 +23,32 @@ public class JDKFlowDemo {
             return true;
         } catch (InterruptedException e) {
             return false;
+        }
+    }
+
+    private static class IntegerSubscriber implements Flow.Subscriber<Integer> {
+        private Flow.Subscription subscription;
+
+        @Override
+        public void onSubscribe(Flow.Subscription subscription) {
+            this.subscription = subscription;
+            subscription.request(1);
+        }
+
+        @Override
+        public void onNext(Integer item) {
+            System.out.println(item);
+            subscription.request(1);
+        }
+
+        @Override
+        public void onError(Throwable throwable) {
+
+        }
+
+        @Override
+        public void onComplete() {
+            System.out.println("DONE!");
         }
     }
 }

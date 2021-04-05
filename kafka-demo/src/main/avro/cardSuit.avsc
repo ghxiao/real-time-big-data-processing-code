@@ -1,0 +1,12 @@
+{
+  "namespace": "org.ghxiao.kafka.avro.model",
+  "type": "record",
+  "name": "CardSuit",
+  "fields": [
+    {
+      "name": "suit",
+      "type": "string",
+      "doc": "The suit of the card"
+    }
+  ]
+}

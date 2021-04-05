@@ -4,6 +4,7 @@ import io.reactivex.Flowable;
 
 import java.util.concurrent.TimeUnit;
 
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class RxTreeSubscriber {
 
     public static void main(String[] args) {

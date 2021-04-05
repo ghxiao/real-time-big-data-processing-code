@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class Debounce {
+public class Throttle {
     public static void main(String[] args) throws InterruptedException {
         final Observable<Long> feed = Observable
                 .interval(1, 200, TimeUnit.MILLISECONDS)
@@ -17,8 +17,8 @@ public class Debounce {
                 err -> System.out.println("ERROR " + err),
                 () -> System.out.println("DONE"));
 
-        final Observable<Long> debounced = feed.debounce(500, TimeUnit.MILLISECONDS);
-        debounced.subscribe(x -> System.out.println("debounced: time=" + LocalDateTime.now() + " value=" + x),
+        final Observable<Long> throttle = feed.throttleWithTimeout(500, TimeUnit.MILLISECONDS);
+        throttle.subscribe(x -> System.out.println("throttled: time=" + LocalDateTime.now() + " value=" + x),
                 err -> System.out.println("ERROR " + err),
                 () -> System.out.println("DONE"));
         Thread.sleep(10000);

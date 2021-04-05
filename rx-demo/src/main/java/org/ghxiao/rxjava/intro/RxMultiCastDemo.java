@@ -4,6 +4,7 @@ import io.reactivex.Flowable;
 
 import java.util.concurrent.TimeUnit;
 
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class RxMultiCastDemo {
     public static void main(String[] args) {
         final Flowable<Long> numbers = Flowable.interval(1, 1, TimeUnit.SECONDS)
